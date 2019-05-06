@@ -12,18 +12,12 @@ var requestOptions = {
   };
 
 function getAndPrintHTMLChunks (response) {
-
-    var requestOptions = {
-      host: 'sytantris.github.io',
-      path: '/http-examples/step1.html'
-    };
   
     /* Add your code here */
     // set encoding of received data to UTF-8
     response.setEncoding('utf8');
     
-    // the callback is invoked when a `data` chunk is received
-
+    // reading data
     var output = "";
 
     response.on('data', function (data) {
@@ -31,12 +25,11 @@ function getAndPrintHTMLChunks (response) {
     });
     
 
-    // the callback is invoked when all of the data has been received
-    // (the `end` of the stream)
+    // at end of data, console log output
     response.on('end', function() {
         console.log(output);
     });
   
 };
-
+//invoke http.get with the getAndPritnHTMLChunks function
 https.get(requestOptions, getAndPrintHTMLChunks);
